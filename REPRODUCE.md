@@ -57,3 +57,20 @@ tectonic -X compile --only-cached --bundle .tectonic/tlextras-2022.0r0-paper.zip
 ```
 
 The verified resource bundle contains 327 pinned files. The rebuilt ZIP has 20,504,169 bytes and SHA-256 `343e70556e28524d9a4d4b5e40d5db671361988ee941413dfc803eb9c62c1324`.
+
+复现 PDF 的精确字节时还要固定写入文档的创建时间。下表给出本次以 Tectonic `0.17.0+20260731` 和上述资源包在空缓存中重建、并与成品逐字节比对过的值。For byte-level comparison, set `SOURCE_DATE_EPOCH` to the value for that manuscript before compiling it.
+
+| PDF | `SOURCE_DATE_EPOCH` | Bytes | SHA-256 |
+| --- | ---: | ---: | --- |
+| English | 1795692964 | 50,836 | `0b7d33ebc846c2d5d388acb24a1e116792c391fb533628fea9d6fc3258d50095` |
+| 中文 | 1795692965 | 160,078 | `327d5341c89b4c36ddce64ed01d1116d0e7cfaac7625bb91af212d841ea6bd85` |
+
+例如，在 `paper` 目录的 PowerShell 会话中可以这样指定时间并比较散列。
+
+```powershell
+$env:SOURCE_DATE_EPOCH = '1795692964'
+tectonic -X compile --only-cached --bundle .tectonic/tlextras-2022.0r0-paper.zip paper-en.tex
+$env:SOURCE_DATE_EPOCH = '1795692965'
+tectonic -X compile --only-cached --bundle .tectonic/tlextras-2022.0r0-paper.zip paper-zh.tex
+Get-FileHash -Algorithm SHA256 -LiteralPath paper-en.pdf,paper-zh.pdf
+```
