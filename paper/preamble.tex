@@ -1,0 +1,59 @@
+\usepackage[a4paper,left=28mm,right=28mm,top=24mm,bottom=24mm,footskip=11mm]{geometry}
+\usepackage{amsmath,amssymb,booktabs}
+\usepackage{fontspec}
+\ifchinese
+  \usepackage{xeCJK}
+  \defaultCJKfontfeatures{}
+  \setCJKmainfont[
+    BoldFont=gbsn00lp.ttf,
+    BoldFeatures={FakeBold=1.65}
+  ]{gbsn00lp.ttf}
+  \renewcommand{\refname}{参考文献}
+  \linespread{1.14}
+\else
+  \linespread{1.05}
+\fi
+\usepackage[hidelinks,unicode]{hyperref}
+\setlength{\parindent}{1.25em}
+\setlength{\parskip}{2pt}
+\setlength{\emergencystretch}{1em}
+\raggedbottom
+\pagestyle{plain}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\WS}{\operatorname{WS}}
+\newcommand{\D}{D_\ell}
+\newcommand{\B}{B_\ell}
+\newcommand{\intv}[2]{[#1,#2]_{\Z}}
+\newcommand{\headword}[1]{\par\medskip\noindent\textbf{#1}\enspace}
+\newcommand{\proofsquare}{\unskip\nobreak\hfill\(\square\)}
+\newcommand{\papertitle}[1]{%
+  \begin{center}\LARGE\bfseries #1\par\end{center}\medskip}
+\newcommand{\spectrumdisplay}{%
+  \begin{equation}\label{eq:spectrum}
+  \D(n)=
+  \begin{cases}
+    \varnothing & n\le\ell,\\
+    \B          & n=\ell+1,\\
+    \intv{C-(n-1)}{C+\ell(n-\ell)} & n\ge\ell+2 .
+  \end{cases}
+  \end{equation}}
+\newcommand{\thresholdformula}{%
+  \begin{equation}\label{eq:threshold}
+  N=\max\!\left\{\ell+2,\,
+       \min\!\left\{r+1,\ \ell+\left\lceil\frac{m-r}{\ell}\right\rceil\right\}\right\},
+  \qquad \WS_m(1,\ell)=N-1 .
+  \end{equation}}
+\newcommand{\valuetable}{%
+  \begin{center}
+  \renewcommand{\arraystretch}{1.12}
+  \begin{tabular}{@{}rr@{\qquad}l@{\qquad}l@{}}
+    \toprule
+    \(m\) & \(n\) & \(D_4(n)\) & \(D_4(n)\cap m\Z\)\\
+    \midrule
+    11 & 4 & \(\varnothing\) & \(\varnothing\)\\
+    11 & 5 & \(\{5,7,9,11,13\}\) & \(\{11\}\)\\
+    23 & 7 & \(\intv{3}{21}\) & \(\varnothing\)\\
+    23 & 8 & \(\intv{2}{25}\) & \(\{23\}\)\\
+    \bottomrule
+  \end{tabular}
+  \end{center}}

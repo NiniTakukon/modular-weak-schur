@@ -1,0 +1,13 @@
+lean/.lake/
+__pycache__/
+*.py[cod]
+paper/.build/
+paper/.tectonic/
+paper/tmp/
+paper/.tex-cache/
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.synctex.gz

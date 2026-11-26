@@ -1,0 +1,6 @@
+name = "weak_schur"
+version = "1.0.0"
+defaultTargets = ["WeakSchur"]
+
+[[lean_lib]]
+name = "WeakSchur"

@@ -1,0 +1,95 @@
+\documentclass[11pt,a4paper]{article}
+\newif\ifchinese
+\chinesefalse
+\input{preamble}
+\hypersetup{pdftitle={The integer spectrum of a signed sum and one-colour modular weak Schur numbers},pdflang={en-GB}}
+\begin{document}
+
+\papertitle{The integer spectrum of a signed sum\\
+and one-colour modular weak Schur numbers}
+
+\noindent\textbf{Abstract.}
+Take \(\ell\) distinct summands from \(\{1,\ldots,n\}\) and subtract a further element of the same set. For \(\ell\ge2\), the attainable integers form a progression of step two at \(n=\ell+1\) and fill the entire interval between their extremes for every \(n\ge\ell+2\). For \(\ell=1\), the difference of two distinct integers never equals zero. Locating the first multiple of \(m\) gives an exact formula for the one-colour modular weak Schur number for every \(m,\ell\ge1\).
+
+\section{The spectrum and the threshold}
+Write \([n]=\{1,\ldots,n\}\) and \(\intv{a}{b}=\{t\in\Z:a\le t\le b\}\).
+For positive integers \(m,\ell\), let \(\WS_m(1,\ell)\) be the largest \(n\) for which the congruence
+\[
+  x_1+\cdots+x_\ell\equiv y\pmod m
+\]
+has no solution in pairwise distinct elements of \([n]\). Distinctness refers to the chosen integers. Their residues modulo \(m\) may coincide. Define the integer spectrum
+\[
+  \D(n)=
+  \{x_1+\cdots+x_\ell-y : x_1,\ldots,x_\ell,y\in[n]\text{ pairwise distinct}\}.
+\]
+A solution exists exactly when \(\D(n)\cap m\Z\ne\varnothing\).
+
+\headword{Theorem 1 (integer spectrum).}
+For \(\ell\ge2\), put \(T=\ell(\ell+1)/2\), \(C=T-1\), and
+\(\B=\{C-\ell+2j:0\le j\le\ell,\ j\in\Z\}\). Then
+\spectrumdisplay
+
+\headword{Corollary 2 (one-colour formula).}
+For \(\ell=1\), we have \(\WS_m(1,1)=m\).
+For \(\ell\ge2\), if \(\B\cap m\Z\ne\varnothing\), then \(\WS_m(1,\ell)=\ell\).
+Otherwise let \(r\) be the least nonnegative residue of \(C\) modulo \(m\).
+The first \(n\) admitting a solution is \(N\), where
+\thresholdformula
+
+
+\headword{Related work.}
+Chappelon, Revuelta Marchena and Sanz Domínguez determine modular weak Schur numbers for \(m=1,2,3\)~\cite{chappelon}. D'orville, Sim, Wong and Ho report an exact one-colour value for sufficiently large \(\ell\)~\cite{dorville}. Grynkiewicz, Philipp and Ponomarenko study cardinality and coverage for permutations of consecutive weights in finite abelian groups~\cite{grynkiewicz}. For \(n\ge\ell+1\), the reduction of \(\D(n)\) modulo \(m\) fits this model by assigning the weights \(1,\ldots,n\) to \(\ell\) coefficients \(+1\), one \(-1\), and \(n-\ell-1\) zeros. Mohan, Mistri and Pandey allow every assignment of signs to a fixed number of distinct integers~\cite{mohan}. Here the spectrum keeps exactly one minus sign and records each integer before reduction modulo \(m\).
+
+\clearpage
+\section{Proof of the spectrum theorem}
+When \(n\le\ell\), there are too few integers to choose \(\ell+1\) distinct entries.
+At \(n=\ell+1\) every integer is used. Choosing \(y\) gives the signed value
+\[
+ \frac{(\ell+1)(\ell+2)}2-2y.
+\]
+As \(y\) runs from \(\ell+1\) down to \(1\), the values run from \(C-\ell\) to \(C+\ell\) in steps of two. This gives \(\B\).
+
+For every \(n\ge\ell+1\), the minimum \(L_n\) and maximum \(U_n\) are
+\begin{align*}
+ L_n &= (1+\cdots+\ell)-n=T-n=C-(n-1),\\
+ U_n &= \bigl((n-\ell+1)+\cdots+n\bigr)-1=C+\ell(n-\ell).
+\end{align*}
+Indeed the positive sum lies between the sums of the smallest and the largest \(\ell\) elements. Pairing these choices with \(y=n\) and \(y=1\), respectively, attains the stated bounds with distinct entries.
+
+\headword{One unused integer.}
+Set \(n=\ell+2\ge4\) and \(S=n(n+1)/2\). Let \(a\) be the unused integer. With \(a\ne y\), the signed value is \(S-a-2y\). We claim
+\begin{equation}\label{eq:base}
+ \{a+2y:a,y\in[n],\ a\ne y\}=\intv{4}{3n-1}.
+\end{equation}
+Allowing \(a=y\) gives, for each \(y\), the interval \(\intv{2y+1}{2y+n}\). Consecutive intervals overlap and their union is \(\intv{3}{3n}\). Excluding \(a=y\) removes the representation \((j,j)\) of \(3j\). For \(2\le j\le n-2\), another pair is \((a,y)=(j+2,j-1)\). For \(j=n-1\), take \((a,y)=(j-2,j+1)\), valid since \(j\ge3\). The endpoints \(3\) and \(3n\) require \((1,1)\) and \((n,n)\), respectively. This proves~\eqref{eq:base}. Subtracting that interval from \(S\) gives every value from \(S-(3n-1)=L_n\) to \(S-4=U_n\).
+
+\headword{Enlarging the interval.}
+Suppose \(n\ge\ell+2\) and \(\D(n)=\intv{L_n}{U_n}\). Each old choice still lies in \([n+1]\). Adding one to each of its \(\ell+1\) entries gives another valid choice, with signed value larger by \(\ell-1\). The old interval and its translate overlap, since
+\[
+ U_n-L_n=(\ell+1)(n-\ell)+\ell-1\ \ge\ 3\ell+1.
+\]
+Together they cover \(\intv{L_n}{U_n+\ell-1}\). The two adjacent values are \(L_{n+1}=L_n-1\) and \(U_{n+1}=U_n+\ell\). The extremal choices above realize both on \([n+1]\). This completes the induction.\proofsquare
+
+\clearpage
+\section{The first multiple and two examples}
+For \(\ell=1\), the elements of \([m]\) have distinct residues, and \(1,m+1\) give the first congruent pair. For \(\ell\ge2\), a multiple of \(m\) in \(\B\) gives the first solution at \(n=\ell+1\). Suppose that this boundary test fails.
+
+For \(n\ge\ell+2\), the interval in~\eqref{eq:spectrum} contains \(C\). Its first encounter with \(m\Z\) is determined by the multiple \(C-r\) at or below \(C\) and the next multiple \(C+(m-r)\) above it. The two endpoint tests are
+\begin{align*}
+ L_n\le C-r &\iff n\ge r+1,\\
+ U_n\ge C+(m-r) &\iff n\ge \ell+\left\lceil(m-r)/\ell\right\rceil .
+\end{align*}
+Either test suffices. Taking the earlier threshold subject to \(n\ge\ell+2\) gives \(N\) in~\eqref{eq:threshold}. A solution persists when \(n\) increases, so the last solution-free interval is \([N-1]\).\proofsquare
+
+\headword{Examples with \(\ell=4\).}
+Here \(T=10\) and \(C=9\). The table gives the spectrum on either side of each threshold.
+\valuetable
+For \(m=11\), \(1+3+4+5-2=11\) on \([5]\), giving \(\WS_{11}(1,4)=4\).
+For \(m=23\), \(5+6+7+8-3=23\) on \([8]\), giving \(\WS_{23}(1,4)=7\).
+
+
+\smallskip
+\noindent{\small The literature comparison covers these four works. For~\cite{dorville} it uses the publisher's public abstract, as the full text requires a subscription. The user set the constraints on problem selection and the verification rules. AI selected the problem, derived the proof, implemented the computational checks, and wrote the English and Chinese manuscripts. This preprint has not been peer reviewed.\par}
+
+{\small\bibliographystyle{abbrv}\bibliography{references}}
+\end{document}

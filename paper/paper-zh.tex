@@ -1,0 +1,92 @@
+\documentclass[11pt,a4paper]{article}
+\newif\ifchinese
+\chinesetrue
+\input{preamble}
+\hypersetup{pdftitle={有符号和的整数谱与单色模弱 Schur 数},pdflang={zh-CN}}
+\begin{document}
+
+\papertitle{有符号和的整数谱与单色模弱 Schur 数}
+
+\noindent\textbf{摘要}\quad
+从 \(\{1,\ldots,n\}\) 中取 \(\ell\) 个不同的数相加，再减去集合中另一个未选的数。对 \(\ell\ge2\)，当 \(n=\ell+1\) 时，所得整数构成公差为二的等差数列，而当 \(n\ge\ell+2\) 时，从最小值到最大值的每一个整数都能取到。对 \(\ell=1\)，两个不同整数的差始终不能取零。确定整数谱中何时首次出现 \(m\) 的倍数，即可对所有 \(m,\ell\ge1\) 给出单色模弱 Schur 数的精确公式。
+
+\section{整数谱与单色阈值}
+记 \([n]=\{1,\ldots,n\}\)，\(\intv{a}{b}=\{t\in\Z:a\le t\le b\}\)。
+对正整数 \(m,\ell\)，令 \(\WS_m(1,\ell)\) 为使
+\[
+  x_1+\cdots+x_\ell\equiv y\pmod m
+\]
+在 \([n]\) 中没有两两不同整数解的最大 \(n\)。这里要求 \(x_1,\ldots,x_\ell,y\) 这 \(\ell+1\) 个整数两两不同，它们模 \(m\) 的余数可以相同。定义有符号和的整数谱
+\[
+  \D(n)=
+  \{x_1+\cdots+x_\ell-y : x_1,\ldots,x_\ell,y\in[n]\text{ 两两不同}\}.
+\]
+同余式有解当且仅当 \(\D(n)\cap m\Z\ne\varnothing\)。
+
+\headword{定理 1（整数谱）}
+设 \(\ell\ge2\)，记 \(T=\ell(\ell+1)/2\)，\(C=T-1\)，并令
+\(\B=\{C-\ell+2j:0\le j\le\ell,\ j\in\Z\}\)。则
+\spectrumdisplay
+
+\headword{推论 2（单色公式）}
+当 \(\ell=1\) 时，\(\WS_m(1,1)=m\)。
+当 \(\ell\ge2\) 时，若 \(\B\cap m\Z\ne\varnothing\)，则 \(\WS_m(1,\ell)=\ell\)。
+其余情形下，取 \(r\) 为 \(C\) 模 \(m\) 的最小非负余数。首次有解的 \(n\) 为 \(N\)，其中
+\thresholdformula
+
+
+\headword{相关工作}
+Chappelon、Revuelta Marchena 与 Sanz Domínguez 确定了 \(m=1,2,3\) 的模弱 Schur 数~\cite{chappelon}。D'orville、Sim、Wong 与 Ho 报告了 \(\ell\) 充分大时的单色精确值~\cite{dorville}。Grynkiewicz、Philipp 与 Ponomarenko 研究连续整数权重在有限交换群中排列所得的集合，给出基数与覆盖结果~\cite{grynkiewicz}。当 \(n\ge\ell+1\) 时，把权重 \(1,\ldots,n\) 分配给 \(\ell\) 个 \(+1\)、一个 \(-1\) 和 \(n-\ell-1\) 个零，就得到 \(\D(n)\) 在模 \(m\) 下的像。Mohan、Mistri 与 Pandey 对固定个数的不同整数取所有符号分配的并~\cite{mohan}。本文固定一个负号，在模 \(m\) 约化前逐一确定可取的整数。
+
+\clearpage
+\section{整数谱的证明}
+当 \(n\le\ell\) 时，区间中不足 \(\ell+1\) 个数，谱为空集。当 \(n=\ell+1\) 时，区间中每个数都被选用。选定右端 \(y\) 后，有符号和为
+\[
+ \frac{(\ell+1)(\ell+2)}2-2y .
+\]
+让 \(y\) 从 \(\ell+1\) 逐一减到 \(1\)，有符号和便从 \(C-\ell\) 每次增加二，直至 \(C+\ell\)，恰好取遍 \(\B\)。
+
+对每个 \(n\ge\ell+1\)，最小值 \(L_n\) 和最大值 \(U_n\) 分别为
+\begin{align*}
+ L_n &= (1+\cdots+\ell)-n=T-n=C-(n-1),\\
+ U_n &= \bigl((n-\ell+1)+\cdots+n\bigr)-1=C+\ell(n-\ell).
+\end{align*}
+正项之和介于最小 \(\ell\) 个数之和与最大 \(\ell\) 个数之和之间。前者取 \(y=n\)，后者取 \(y=1\)，就能分别达到这两个界，所取各数也确实两两不同。
+
+\headword{恰有一个数未被选用}
+令 \(n=\ell+2\ge4\)，\(S=n(n+1)/2\)。记未选用的数为 \(a\)，则 \(a\ne y\)，有符号和为 \(S-a-2y\)。我们证明
+\begin{equation}\label{eq:base}
+ \{a+2y:a,y\in[n],\ a\ne y\}=\intv{4}{3n-1}.
+\end{equation}
+暂时允许 \(a=y\)。固定 \(y\) 时得到整数区间 \(\intv{2y+1}{2y+n}\)，相邻区间重叠，并集为 \(\intv{3}{3n}\)。排除 \(a=y\) 后，值 \(3j\) 失去表示 \((j,j)\)。当 \(2\le j\le n-2\) 时，可改取 \((a,y)=(j+2,j-1)\)。当 \(j=n-1\) 时，可取 \((a,y)=(j-2,j+1)\)，因为此时 \(j\ge3\)。只有端点 \(3\) 与 \(3n\) 各自的唯一表示必须取 \(a=y\)，故式~\eqref{eq:base} 成立。用 \(S\) 减去该区间中的各个整数，即取遍从 \(S-(3n-1)=L_n\) 到 \(S-4=U_n\) 的所有整数。
+
+\headword{从 \([n]\) 扩大到 \([n+1]\)}
+设 \(n\ge\ell+2\)，且 \(\D(n)=\intv{L_n}{U_n}\)。原来的每组取法在 \([n+1]\) 中仍然可用。把所选的 \(\ell+1\) 个数同时加一，仍得合法取法，有符号和增加 \(\ell-1\)。原区间与平移后的区间重叠，因为
+\[
+ U_n-L_n=(\ell+1)(n-\ell)+\ell-1\ \ge\ 3\ell+1 .
+\]
+两区间合起来覆盖 \(\intv{L_n}{U_n+\ell-1}\)。相邻的两个新端点为 \(L_{n+1}=L_n-1\) 与 \(U_{n+1}=U_n+\ell\)，均可在 \([n+1]\) 上用上述极值取法达到。归纳完成。\proofsquare
+
+\clearpage
+\section{首次出现的倍数与两个算例}
+当 \(\ell=1\) 时，\([m]\) 中各数的余数互不相同，加入 \(m+1\) 后即有 \(1\equiv m+1\pmod m\)。设 \(\ell\ge2\)。若 \(\B\) 中含有 \(m\) 的倍数，首次有解的规模就是 \(n=\ell+1\)。下面假设边界等差数列未命中倍数。
+
+当 \(n\ge\ell+2\) 时，式~\eqref{eq:spectrum} 给出的区间含有 \(C\)。不超过 \(C\) 的最大倍数是 \(C-r\)，再往上的第一个倍数是 \(C+(m-r)\)。区间触及这两个倍数的条件分别为
+\begin{align*}
+ L_n\le C-r &\iff n\ge r+1,\\
+ U_n\ge C+(m-r) &\iff n\ge \ell+\left\lceil(m-r)/\ell\right\rceil .
+\end{align*}
+任一条件成立即有解。在 \(n\ge\ell+2\) 的范围内取较早实现的条件，得到式~\eqref{eq:threshold} 中的 \(N\)。已有的解在更大的区间中依然成立，因此最后一个无解区间是 \([N-1]\)。\proofsquare
+
+\headword{\(\ell=4\) 的两个算例}
+此时 \(T=10\)，\(C=9\)。下表列出每个算例首次有解之前和首次有解时的整数谱。
+\valuetable
+取 \(m=11\)，在 \([5]\) 中有 \(1+3+4+5-2=11\)，故 \(\WS_{11}(1,4)=4\)。
+取 \(m=23\)，在 \([8]\) 中有 \(5+6+7+8-3=23\)，故 \(\WS_{23}(1,4)=7\)。
+
+
+\smallskip
+\noindent{\small 文献比较限于所引四项工作。文献~\cite{dorville} 的出版社全文限订阅，本文据其公开摘要表述。用户设定选题约束和核验规则。AI 选定问题、推导证明、实现计算核验并撰写中英文稿。本文为未经同行评审的预印本。\par}
+
+{\small\bibliographystyle{abbrv}\bibliography{references}}
+\end{document}

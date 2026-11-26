@@ -1,0 +1,42 @@
+Lean (version 4.19.0, x86_64-w64-windows-gnu, commit 6caaee842e94, Release)
+
+$ lake build
+✔ [2/7] Built WeakSchur.Model
+✔ [3/7] Built WeakSchur.Witness
+✔ [4/7] Built WeakSchur.Spectrum
+✔ [5/7] Built WeakSchur.Threshold
+✔ [6/7] Built WeakSchur
+Build completed successfully.
+
+$ lake env lean Audit.lean
+def WeakSchur.ModularWitness : Nat → Nat → Nat → Prop :=
+fun m l n =>
+  ∃ xs y,
+    xs.length = l ∧ (xs.Nodup ∧ ∀ (x : Nat), x ∈ xs → 0 < x ∧ x ≤ n) ∧ ¬y ∈ xs ∧ 0 < y ∧ y ≤ n ∧ xs.sum % m = y % m
+def WeakSchur.weakSchur : Nat → Nat → Nat :=
+fun m l => WeakSchur.firstBad m l - 1
+def WeakSchur.firstBad : Nat → Nat → Nat :=
+fun m l => if l = 1 then m + 1 else if WeakSchur.boundaryHit m l = true then l + 1 else WeakSchur.roomCut m l
+def WeakSchur.roomCut : Nat → Nat → Nat :=
+fun m l =>
+  let r := (WeakSchur.tri l - 1) % m;
+  max (l + 2) (min (r + 1) (l + (m - r + l - 1) / l))
+def WeakSchur.boundaryHit : Nat → Nat → Bool :=
+fun m l => (List.range (l + 1)).any fun j => (↑(WeakSchur.tri l) - ↑(l + 1) + 2 * ↑j) % ↑m == 0
+@WeakSchur.one_colour_threshold : ∀ {m l n : Nat},
+  0 < m → 0 < l → (¬WeakSchur.ModularWitness m l n ↔ n ≤ WeakSchur.weakSchur m l)
+@WeakSchur.weakSchur_isGreatest : ∀ {m l : Nat},
+  0 < m →
+    0 < l →
+      ¬WeakSchur.ModularWitness m l (WeakSchur.weakSchur m l) ∧
+        ∀ (n : Nat), ¬WeakSchur.ModularWitness m l n → n ≤ WeakSchur.weakSchur m l
+'WeakSchur.tri_closed' depends on axioms: [propext, Quot.sound]
+'WeakSchur.signed_iff_witness' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WeakSchur.spectrum_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WeakSchur.spectrum_small' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WeakSchur.spectrum_tight' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WeakSchur.spectrum_room' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WeakSchur.hasSolution_iff_firstBad' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WeakSchur.hasSolution_iff_modularWitness' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WeakSchur.one_colour_threshold' depends on axioms: [propext, Classical.choice, Quot.sound]
+'WeakSchur.weakSchur_isGreatest' depends on axioms: [propext, Classical.choice, Quot.sound]
